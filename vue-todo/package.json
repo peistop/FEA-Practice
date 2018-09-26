@@ -1,0 +1,8 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "todo practice with Vue",
+  "dependencies": {
+    "vue": "^2.1.8"
+  }
+}
