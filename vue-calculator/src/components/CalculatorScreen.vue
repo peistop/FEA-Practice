@@ -14,19 +14,25 @@
       font-size: 14px;
       letter-spacing: 3px;
       color: #8c8c8c;
+      overflow: auto;
     }
   }
 </style>
 
 <template>
-    <b-form-textarea class="screen text-right h1" :value="value" :no-resize="true" :rows="rows" plaintext></b-form-textarea>
+    <b-form-textarea class="screen text-right h1" :value="value" :no-resize="true" :rows="rows" :max-rows="maxRows" plaintext></b-form-textarea>
 </template>
 
 <script>
   export default {
+    name: 'CalculatorScreen',
     props: {
       rows: {
         type: Number
+      },
+      maxRows: {
+        type: Number,
+        default: 5
       },
       value: {
         type: String,

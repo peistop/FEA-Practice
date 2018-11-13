@@ -1,11 +1,12 @@
 <style scoped>
-   .calculator {
-     width: 50%;
-     padding: 10px;
-     border: 1px solid;
-     border-radius: 2px;
-     border-color: #f2f2f2;
-   }
+  .calculator {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 2px;
+    border-color: #f2f2f2;
+    overflow:hidden;
+  }
 </style>
 
 <template>
@@ -49,16 +50,18 @@
 <script>
   import CalculatorButton from './CalculatorButton';
   import CalculatorScreen from './CalculatorScreen';
+  import { add, subtract, multiply, divide, format } from 'mathjs';
 
+  const MAX_DIGIT_NUM = 16;
   const Operators = Object.freeze({
-    '+': (a, b) => a + b,
-    '-': (a, b) => a - b,
-    '*': (a, b) => a * b,
+    '+': (a, b) => format(add(a, b), {precision: MAX_DIGIT_NUM}),
+    '-': (a, b) => format(subtract(a, b), {precision: MAX_DIGIT_NUM}),
+    '*': (a, b) => format(multiply(a, b), {precision: MAX_DIGIT_NUM}),
     '/': (a, b) => {
       if (b === 0) {
         throw new Error('Infinity');
       }
-      return a / b;
+      return format(divide(a, b), {precision: MAX_DIGIT_NUM});
     }
   });
 
@@ -69,23 +72,14 @@
       CalculatorScreen
     },
     props: {
-      maxDigitNum: {
-        type: Number,
-        default: 16,
-        validator: function (value) {
-          return 1 <= value <= 16;
-        }
-      },
       maxHistoryNum: {
         type: Number,
         default: 2,
-        validator: function (value) {
-          return 0 <= value <= 5;
-        }
       }
     },
     data() {
       return {
+        MAX_DIGIT_NUM: MAX_DIGIT_NUM,
         inputState: 'START_TYPING',
         operator: null,
         previousValue: null,
@@ -143,10 +137,9 @@
           this.inputState = 'TYPING';          
           return;
         }
-        if (this.currentValueStr.length < this.maxDigitNum) {          
+        if (this.currentValueStr.length < this.MAX_DIGIT_NUM) {          
           this.currentValueStr += digit;          
-        }
-        console.log(this.currentValueStr);
+        }       
       },
       setOperator: function (operator) {        
         if (this.previousValue === null) {
@@ -173,7 +166,6 @@
             this.history.pop();
           }
           this.history.unshift(this.getPrecisionValue(this.previousValue) + this.operator + this.currentValueStr + '=' + result);
-          
           this.currentValueStr = result.toString();
           this.previousValue = result;
          
@@ -181,7 +173,7 @@
           this.operator = null;
         }
         catch (err) {
-          console.log(err.message)
+          console.log(err.message);
           this.currentValueStr = err.message;
         }
       },
@@ -193,11 +185,10 @@
         return parts.join('.');
       },
       getPrecisionValue: function (value) {
-        if (value.toString().length > this.maxDigitNum) {
-          for (let i = this.maxDigitNum; i > 0; i--) {     
-            console.log(this.maxDigitNum)
+        if (value.toString().length > this.MAX_DIGIT_NUM) {
+          for (let i = this.MAX_DIGIT_NUM; i > 0; i--) { 
             const adjustedValue = value.toPrecision(i);
-            if (adjustedValue.toString().length <= this.maxDigitNum) {
+            if (adjustedValue.toString().length <= this.MAX_DIGIT_NUM) {
               return adjustedValue;
             };
           }

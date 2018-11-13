@@ -48,3 +48,9 @@
     <b-button class="col-md-3"
           @click="$emit('click', $event)"><slot></slot></b-button>
 </template>
+
+<script>
+  export default {
+    name: 'CalculatorButton',
+  };
+</script>
