@@ -2,7 +2,6 @@
   .r-calendar .r-weekdays {
     flex-grow: 1;
     flex-basis: 0;
-
     .r-cell{
       font-weight: bold;
     }

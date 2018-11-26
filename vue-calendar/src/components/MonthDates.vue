@@ -19,7 +19,7 @@
       cursor: pointer;
       outline: none;
       &.r-selected, &:not(.r-outdate):hover {
-        background-color: #db3d44;
+        background-color: #4CBBBF;
         border-radius: 50%;
         color: #fff;
       }
@@ -28,7 +28,7 @@
     .r-cell.r-date {
       margin: 0px 3px;
       &.r-today {
-        color:#db3d44;
+        color:#4CBBBF;
       }
       &.r-outdate {
         color: #eeeeee;

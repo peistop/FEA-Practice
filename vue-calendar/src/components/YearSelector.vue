@@ -15,7 +15,7 @@
       outline: none;
       margin: 4px;
       &.r-thisyear {
-        background-color: #db3d44;
+        background-color: #4CBBBF;
         border-radius: 50%;
         color: #fff;
       }
@@ -65,7 +65,6 @@
     },
     methods: {
       getYear: function(i, j) {
-        console.log(this.startYear)
         return (i * 4 + j - 1) + this.startYear;
       }
     }

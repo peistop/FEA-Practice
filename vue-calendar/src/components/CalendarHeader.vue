@@ -38,8 +38,8 @@
     transform: rotate(-45deg);
     margin-left: 0.3em;
     &:hover {
-      border-left-color: #db3d44;
-      border-top-color: #db3d44;
+      border-left-color: #4CBBBF;
+      border-top-color: #4CBBBF;
     }
   }
 
@@ -48,8 +48,8 @@
     transform: rotate(45deg);
     margin-right: 0.3em;
     &:hover {
-      border-right-color: #db3d44;
-      border-top-color: #db3d44;
+      border-right-color: #4CBBBF;
+      border-top-color: #4CBBBF;
     }
   }
 }
