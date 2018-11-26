@@ -43,8 +43,10 @@
       <div :class="{
         'r-cell': true,
         'r-date': true,
+        'r-today': new Date(year, month, getDay(i, index).label).getTime() === today.getTime(),
+        'r-selected': new Date(year, month, getDay(i, index).label).getTime() === selectedDate.getTime(),
         'r-outdate': getDay(i, index).outMonth
-      }" v-for="index in weekStack" :key="index">{{getDay(i, index).label}}</div>
+      }" v-for="index in weekStack" :key="index" @click="onSelectDate(year, month, getDay(i, index).label)">{{getDay(i, index).label}}</div>
     </div>
   </div>
 </template>
@@ -53,7 +55,7 @@
 
   const rows = 6;
   export default {
-    props: ['year', 'month', 'startDay'],
+    props: ['year', 'month', 'startDay', 'selectedDate', 'onSelectDate'],
     data() {
       return {
         today: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),

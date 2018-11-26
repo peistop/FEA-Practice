@@ -51,7 +51,7 @@
     <div class="r-inner">
       <calendar-header :title="title" :onPrev="onPrev" :onSelectView="onSelectView" :onNext="onNext" />
       <week-days v-if="view === 'DATES'" :startDay="startDay" :dayNames="dayNames" />
-      <month-dates v-if="view === 'DATES'" :year="year" :month="month" :startDay="startDay" />
+      <month-dates v-if="view === 'DATES'" :year="year" :month="month" :startDay="startDay" :selectedDate="selectedDate" :onSelectDate="onSelectDate" />
       <month-selector v-if="view === 'MONTHS'" :year="year" :monthNames="monthNames"
                       :selectedMonth="selectedMonth" :selectedYear="selectedYear" :onSelectMonth="onSelectMonth" />
       <year-selector v-if="view === 'YEARS'" :year="year" :selectedYear="selectedYear" :onSelectYear="onSelectYear" />
@@ -171,6 +171,12 @@
         else if (this.view === 'MONTHS') {
           this.view = 'YEARS';
         }
+      },
+      onSelectDate: function(year, month, day) {
+        this.selectedYear = year;
+        this.selectedMonth = month; // index of month
+        this.selectedDay = day;
+        this.selectedDate = new Date(year, month, day);
       },
       onSelectMonth: function(month) {
         this.month = month;
