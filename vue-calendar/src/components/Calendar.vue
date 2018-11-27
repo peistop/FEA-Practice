@@ -5,7 +5,7 @@
   -webkit-box-shadow: 0 0 5px #ccc;
   box-shadow: 0 0 5px #ccc;
   position: relative;
-  margin: 10px;
+  margin: 40px;
 
   &:after{
     content: "";
@@ -13,9 +13,10 @@
     padding-bottom: 100%;
   }
 
-  .r-head, .r-footer {
+  .r-head {
     flex-grow: 1;
     flex-basis: 0;
+    padding-top: 20px;
   }
 
   .r-inner{
@@ -83,21 +84,15 @@
       },
       monthNames: {
         type: Array,
-        default: function() { 
-          return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        }
+        default: () => ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
       },
       monthFullNames: {
         type: Array,
-        default: function() {
-          return ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        }
+        default: () => ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
       },
       dayNames: {
         type: Array,
-        default: function() {
-          return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        }
+        default: () => ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
       }
     },
     data() {
@@ -135,14 +130,17 @@
         if (this.view === "DATES") {
           if (this.month > 0) {
             this.month = this.month - 1;
-          } else {
+          } 
+          else {
             this.month = 11;
             this.year = this.year - 1;
           }
-        } else if (this.view === "MONTHS") {
+        } 
+        else if (this.view === "MONTHS") {
           this.year = this.year - 1;
           this.month = 0;
-        } else if (this.view === "YEARS") {
+        } 
+        else if (this.view === "YEARS") {
           this.year = this.year - 10;
           this.month = 0;
         }
@@ -151,20 +149,22 @@
         if (this.view === "DATES") {
           if (this.month < 11) {
             this.month = this.month + 1;
-          } else {
+          } 
+          else {
             this.month = 0;
             this.year = this.year + 1;
           }
-        } else if (this.view === "MONTHS") {
+        } 
+        else if (this.view === "MONTHS") {
           this.year = this.year + 1;
           this.month = 0;
-        } else if (this.view === "YEARS") {
+        } 
+        else if (this.view === "YEARS") {
           this.year = this.year + 10;
           this.month = 0;
         }
       },
       onSelectView: function() {
-        console.log("onSelectView");
         if (this.view === 'DATES') {
           this.view = 'MONTHS';
         } 

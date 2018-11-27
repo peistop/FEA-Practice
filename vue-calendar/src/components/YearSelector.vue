@@ -5,6 +5,7 @@
       flex-flow: column nowrap;
       flex-grow: 6;
       flex-basis: 0;
+      padding-bottom: 20px;
       .r-row {
         flex-grow: 1;
       }
