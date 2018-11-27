@@ -1,6 +1,5 @@
 <style lang="less">
   .r-calendar {
-
     .r-months {
       display: flex;
       flex-flow: column nowrap;
@@ -25,7 +24,6 @@
         border-radius: 50%;
       }
     }
-
   }
 </style>
 
@@ -54,7 +52,8 @@
     },
     methods: {
       getMonth: function(i, j) {
-        return i * 4  + j ;
+        const index = i * 4  + j; //index of month
+        return index;
       }
     }
   };

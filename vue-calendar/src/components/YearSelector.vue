@@ -65,7 +65,8 @@
     },
     methods: {
       getYear: function(i, j) {
-        return (i * 4 + j - 1) + this.startYear;
+        const index = i * 4 + j - 1; // index of [startYear - 1, startYear, ..., endYear, endYear + 1]
+        return index + this.startYear;
       }
     }
   };

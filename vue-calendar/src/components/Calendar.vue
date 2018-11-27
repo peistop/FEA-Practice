@@ -49,8 +49,8 @@
 <template>
   <div class="r-calendar">
     <div class="r-inner">
-      <calendar-header :title="title" :onPrev="onPrev" :onSelectView="onSelectView" :onNext="onNext" />
-      <week-days v-if="view === 'DATES'" :startDay="startDay" :dayNames="dayNames" />
+      <calendar-header :title="title" :on-prev="onPrev" :on-select-view="onSelectView" :on-next="onNext" />
+      <week-days v-if="view === 'DATES'" :start-day="startDay" :day-names="dayNames" />
       <month-dates v-if="view === 'DATES'" :year="year" :month="month" :startDay="startDay" :selectedDate="selectedDate" :onSelectDate="onSelectDate" />
       <month-selector v-if="view === 'MONTHS'" :year="year" :monthNames="monthNames"
                       :selectedMonth="selectedMonth" :selectedYear="selectedYear" :onSelectMonth="onSelectMonth" />
@@ -66,7 +66,7 @@
   import MonthSelector from './MonthSelector';
   import YearSelector  from './YearSelector';
   
-  var date = new Date();
+  const date = new Date();
   
   export default {
     components: {
@@ -104,7 +104,7 @@
       return {
         view: 'DATES',
         year: date.getFullYear(), // year the current calendar shows
-        month: date.getMonth(), //getMonth() return index of months
+        month: date.getMonth(), //getMonth() returns index of months
         selectedYear: date.getFullYear(),
         selectedMonth: date.getMonth(),
         selectedDay: date.getDate(), 
@@ -115,7 +115,7 @@
       title() {
         switch (this.view) { //state pattern ?
           case 'DATES':
-            return this.monthNames[this.month] + ' ' + this.year;
+            return this.monthFullNames[this.month] + ' ' + this.year;
           case 'MONTHS':
             return this.year;
           case 'YEARS':
@@ -174,7 +174,7 @@
       },
       onSelectDate: function(year, month, day) {
         this.selectedYear = year;
-        this.selectedMonth = month; // index of month
+        this.selectedMonth = month;
         this.selectedDay = day;
         this.selectedDate = new Date(year, month, day);
       },
