@@ -59,7 +59,7 @@
     data() {
       return {
         today: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
-        daysPreMonth: new Date(this.year, this.month, 0).getDate(),
+        
         rowStack: Array.apply(null, {length: rows}).map(Number.call, Number),
         weekStack: Array.apply(null, {length: 7}).map(Number.call, Number),
       };
@@ -75,6 +75,9 @@
         }
         day -= 1; 
         return day;
+      },
+      daysPreMonth() {
+        return new Date(this.year, this.month, 0).getDate();
       }
     },
     methods: {
