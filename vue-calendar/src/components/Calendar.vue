@@ -114,7 +114,7 @@
           case 'MONTHS':
             return this.year;
           case 'YEARS':
-            return this.startYear + '-' + this.endYear;
+            return this.startYear + ' - ' + this.endYear;
         }
         return '';
       },
@@ -122,7 +122,7 @@
         return this.year - this.year % 10;
       },
       endYear() {
-        return this.year + 9;
+        return this.startYear + 9;
       }
     },
     methods: {

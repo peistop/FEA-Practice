@@ -20,10 +20,6 @@
         border-radius: 50%;
         color: #fff;
       }
-      &:not(.r-outdate):hover {
-        background-color: #eeeeee; 
-        border-radius: 50%;
-      }
     }
   }
 </style>
@@ -47,14 +43,13 @@
     props: ['year', 'selectedMonth', 'selectedYear', 'monthNames', 'onSelectMonth'],
     data() {
       return {
-        colStack: Array.apply(null, {length: cols}).map(Number.call, Number),
-        rowStack: Array.apply(null, {length: rows}).map(Number.call, Number)
+        colStack: Array.from(Array(cols).keys()),
+        rowStack: Array.from(Array(rows).keys())
       };
     },
     methods: {
       getMonth: function(i, j) {
-        const index = i * 4  + j; //index of month
-        return index;
+        return i * 4  + j; //get month with (i, j)
       }
     }
   };

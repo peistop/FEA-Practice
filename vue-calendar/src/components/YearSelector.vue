@@ -52,8 +52,9 @@
     props: ['year', 'selectedYear', 'onSelectYear'],
     data() {
       return {
-        colStack: Array.apply(null, {length: cols}).map(Number.call, Number),
-        rowStack: Array.apply(null, {length: rows}).map(Number.call, Number)
+        index: -1,
+        colStack: Array.from(Array(cols).keys()),
+        rowStack: Array.from(Array(rows).keys())
       };
     },
     computed: {
@@ -66,8 +67,7 @@
     },
     methods: {
       getYear: function(i, j) {
-        const index = i * 4 + j - 1; // index of [startYear - 1, startYear, ..., endYear, endYear + 1]
-        return index + this.startYear;
+        return (i * 4 + j - 1) + this.startYear; //startYear - 1, startYear, ..., endYear, endYear + 1
       }
     }
   };
