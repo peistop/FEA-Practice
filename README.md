@@ -4,9 +4,11 @@
 
 ## Vue Calculator
 
+* Demo: https://peistop.github.io/vue-calculator/dist/index.html
+
 ## Vue Todo
 
-* Demo: https://peistop.github.io/vue-calculator/dist/index.html
+* TODO: Modify UI
 
 ## Vue Calendar
 
